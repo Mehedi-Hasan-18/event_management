@@ -10,6 +10,8 @@ from .forms import EventForm,CreateParticipant
 from django.db.models import Count, Case, When, BooleanField
 
 # Create your views here.
+def home (request):
+    return render(request,'dashboard.html')
 
 def dashboard(request):
     
