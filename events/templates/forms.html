@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body>
+    {% include "test.html" %}
+    <div class="w-6/12 mx-auto">
+        <form method='POST'>
+            <h1 class="text-3xl text-center text-rose-500 font-bold mt-10 font-mono">Create Event</h1>
+        
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+            {{ form.as_p }}
+            {{par_form}}
+            <button class="!bg-rose-500 px-3 py-2 mt-3 text-black type="Submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
