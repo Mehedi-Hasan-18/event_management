@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +10,6 @@
     <link rel="stylesheet" href={% static "css/output.css" %}>
 </head>
 <body>
-    {% include "test.html" %}
     <!-- All Events Section -->
     <div class="container mx-auto px-4 py-8">
         <div class="mb-12">
@@ -77,3 +78,4 @@
     
 </body>
 </html>
+{% endblock content %}
