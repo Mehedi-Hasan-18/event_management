@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-# import dj_database_url
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -93,24 +93,24 @@ WSGI_APPLICATION = 'eventmanagement.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event_management',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-}
-
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         # Replace this value with your local database's connection string.
-#         default='postgresql://event_management_db_whnh_user:ELg9n3XZbAw8KuwW3NBwYkPJSfChuE6u@dpg-d09r2sk9c44c73ckrlcg-a.oregon-postgres.render.com/event_management_db_whnh',
-#         conn_max_age=600
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'event_management',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
 # }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://event_management_db_whnh_user:ELg9n3XZbAw8KuwW3NBwYkPJSfChuE6u@dpg-d09r2sk9c44c73ckrlcg-a.oregon-postgres.render.com/event_management_db_whnh',
+        conn_max_age=600
+    )
+}
 
 
 # Password validation
