@@ -17,7 +17,7 @@ def register(request):
         if form.is_valid():
             user = form.save(commit= False)
             user.set_password(form.cleaned_data.get('password'))
-            user.is_active = False
+            # user.is_active = False
             user.save()
             
             messages.success(request, 'Please Varify Your Email')
