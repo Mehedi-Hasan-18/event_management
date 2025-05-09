@@ -15,15 +15,14 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit= False)
-            user.set_password(form.cleaned_data.get('password'))
-            # user.is_active = False
-            user.save()
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.is_active = False
+            user.save() 
             
-            messages.success(request, 'Please Varify Your Email')
+            messages.success(request, 'Please verify your email')
             return redirect('signIn')
-    return render(request, 'register.html', {'form':form})    
-
+    return render(request, 'register.html', {'form':form})
 def signIn(request):
     form = CustomSignInForm()
     
@@ -42,18 +41,20 @@ def signOut(request):
         return redirect('signIn')
     return render(request,'home.html')
 
-@login_required
-def active(request,user_id,token):
+def active(request, user_id, token):
     try:
         user = User.objects.get(id=user_id)
-        if default_token_generator.check_token(user,token):
+        if default_token_generator.check_token(user, token):
             user.is_active = True
             user.save()
+            messages.success(request, 'Your account has been activated. Please log in.')
             return redirect('signIn')
         else:
-            return HttpResponse("INVALID USERNAME OR TOKEN")
+            messages.error(request, 'Invalid activation link')
+            return redirect('signIn')
     except User.DoesNotExist:
-        return HttpResponse("USER DOES NOT EXIST")
+        messages.error(request, 'User does not exist')
+        return redirect('signIn')
     
     
 def create_group(request):
