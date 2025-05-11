@@ -4,18 +4,22 @@ from django.contrib.auth.models import User,Group
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.conf import settings
-from events.models import Event,Participant
+from events.models import Event,Participant,EventParticipant
 
 
-@receiver(m2m_changed, sender=Participant.event.through)
-def add_participant(sender, instance, action, pk_set, **kwargs):
-    if action == 'post_add':
+@receiver(m2m_changed, sender=Event.participant.through)
+def handle_participant_added(sender, instance, action, pk_set, **kwargs):
+    if action == "post_add":
         for participant_id in pk_set:
-                participant = Participant.objects.get(pk=participant_id)
-                send_mail(
-                    "New Participant Assignment",
-                    f"You have been added to the event",
-                    "mdmehedihasanroby@gmail.com",
-                    [participant.email],
-                    fail_silently=False,
-                )
+            # Get through the intermediate model
+            relation = EventParticipant.objects.get(
+                event=instance,
+                participant_id=participant_id
+            )
+            send_mail(
+                "Event Registration",
+                f"You've been added to {instance.name}",
+                "from@example.com",
+                [relation.participant.email],
+                fail_silently=False,
+            )

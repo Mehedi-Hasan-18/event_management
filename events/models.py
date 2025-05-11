@@ -31,3 +31,12 @@ class Participant(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+class EventParticipant(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('event', 'participant')
