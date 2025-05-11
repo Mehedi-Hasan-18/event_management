@@ -14,15 +14,10 @@ def handle_participant_added(sender, instance, action, pk_set, **kwargs):
     print("Participants Added:", pk_set)
     if action == "post_add":
         for participant_id in pk_set:
-            # Get through the intermediate model
-            relation = EventParticipant.objects.get(
-                event=instance,
-                participant_id=participant_id
-            )
             send_mail(
                 "Event Registration",
                 f"You've been added",
                 "from@example.com",
-                [relation.participant.email],
+                [instance.email],
                 fail_silently=False,
             )

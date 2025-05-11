@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.decorators import login_required,user_passes_test
+from django.contrib.auth.decorators import login_required,user_passes_test,permission_required
 
 # Create your views here.
 
@@ -56,7 +56,8 @@ def active(request, user_id, token):
         messages.error(request, 'User does not exist')
         return redirect('signIn')
     
-    
+@login_required
+# @permission_required('auth.add_group', login_url='signIn')
 def create_group(request):
     form = CreateGroupForm()
     if request.method == 'POST':

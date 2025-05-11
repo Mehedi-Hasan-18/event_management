@@ -24,7 +24,7 @@ def is_perticipant(user):
     return user.groups.filter(name='Participant').exists()
 
 
-permission_required('events.add_event', login_url='signIn')
+@permission_required('events.add_event', login_url='signIn')
 def dashboard(request):
     
     today = timezone.now().date()
@@ -53,7 +53,7 @@ def dashboard(request):
     
     return render(request,'dashboard.html',{'counts':counts,'total_participant':total_participant,'events':event})
 
-login_required
+@login_required
 def eventform(request):
     form = EventForm()
     par_form = CreateParticipant()
@@ -62,7 +62,7 @@ def eventform(request):
         par_form = CreateParticipant(request.POST)
         if par_form.is_valid() and form.is_valid():
             events = form.save()
-            # participant = par_form.save(commit=False)
+            participant = par_form.save(commit=False)
             participant = par_form.save()
             events.participant.add(participant)
             
@@ -76,7 +76,7 @@ def eventform(request):
     return render(request,"forms.html",{'form':form, 'par_form':par_form})
 
 
-permission_required('events.change_event', login_url='signIn')
+@permission_required('events.change_event', login_url='signIn')
 def updatetask(request,id):
     event = Event.objects.get(id=id)
     participant = Participant.objects.get(id=id)
@@ -96,7 +96,7 @@ def updatetask(request,id):
     return render(request,"forms.html",{'form':form, 'par_form':par_form})
 
 
-permission_required('events.delete_event', login_url='signIn')
+@permission_required('events.delete_event', login_url='signIn')
 @login_required
 def delete_event(request,id):
     if request.method == 'POST':
@@ -109,7 +109,7 @@ def delete_event(request,id):
 
 
     
-
+@login_required
 def event(request):
     event = Event.objects.all()
     return render(request,'event.html', {'events':event})
