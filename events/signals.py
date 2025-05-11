@@ -14,7 +14,7 @@ def add_participant(sender, instance, action, pk_set, **kwargs):
                 participant = Participant.objects.get(pk=participant_id)
                 send_mail(
                     "New Participant Assignment",
-                    f"You have been added to the event: {instance.title}",  # instance is Event
+                    f"You have been added to the event",
                     "mdmehedihasanroby@gmail.com",
                     [participant.email],
                     fail_silently=False,
