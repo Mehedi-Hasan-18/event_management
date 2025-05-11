@@ -62,8 +62,8 @@ def eventform(request):
         par_form = CreateParticipant(request.POST)
         if par_form.is_valid() and form.is_valid():
             events = form.save()
-            participant = par_form.save(commit=False)
-            participant.save()
+            # participant = par_form.save(commit=False)
+            participant = par_form.save()
             events.participant.add(participant)
             
             messages.success(request,"Task Created Successfull")
