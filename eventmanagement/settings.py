@@ -106,7 +106,6 @@ WSGI_APPLICATION = 'eventmanagement.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
         default='postgresql://event_management_db_whnh_user:ELg9n3XZbAw8KuwW3NBwYkPJSfChuE6u@dpg-d09r2sk9c44c73ckrlcg-a.oregon-postgres.render.com/event_management_db_whnh',
         conn_max_age=600
     )
@@ -165,5 +164,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 FRONTEND_URL = 'http://127.0.0.1:8000/'
 
 LOGIN_URL = 'signIn'
+LOGIN_REDIRECT_URL = '/users/profile/'
 
 

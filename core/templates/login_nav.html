@@ -18,6 +18,7 @@
             <form action="{% url 'signOut' %}" method="POST" class="inline">
                 {% csrf_token %}
                 <button type="submit" class="hover:bg-blue-700 px-3 py-2 rounded transition btn">Log Out</button>
+                <a href="{% url "profile" %}">Profile</a>
             </form>
             {% else %}
                 <a href="{% url 'signIn' %}" class="hover:bg-blue-700 px-3 py-2 rounded transition btn">Log In</a>
