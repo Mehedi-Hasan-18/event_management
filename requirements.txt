@@ -24,6 +24,7 @@ filelock==3.18.0
 future==1.0.0
 gevent==25.5.1
 greenlet==3.2.3
+gunicorn==23.0.0
 h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
@@ -35,6 +36,9 @@ oauthlib==3.2.2
 openai==1.97.1
 packaging==25.0
 pillow==11.2.1
+psycopg==3.2.7
+psycopg-binary==3.2.6
+psycopg2==2.9.10
 psycopg2-binary==2.9.10
 pycparser==2.22
 pydantic==2.11.7
