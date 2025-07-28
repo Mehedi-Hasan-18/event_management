@@ -76,7 +76,7 @@ class CreateGroupView(CreateView):
         return response
 
 class ProfileView(TemplateView):
-    template_name = 'accounts\profile.html'
+    template_name ='accounts/profile.html'
     success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
