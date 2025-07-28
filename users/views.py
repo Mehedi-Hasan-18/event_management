@@ -64,7 +64,7 @@ class AccountActivationView(View):
             messages.error(request, "User Does Not Exist")
             return redirect("register")
 
-@method_decorator(permission_required(is_admin,login_url='signIn') ,name='dispatch')
+@method_decorator(permission_required([is_admin],login_url='signIn') ,name='dispatch')
 class CreateGroupView(CreateView):
     form_class = CreateGroupForm
     template_name = 'create_group.html'

@@ -1,0 +1,7 @@
+<h2>{{ event.title }}</h2>
+<p>{{ event.description }}</p>
+
+<form method="POST" action="{% url 'join_event' event.id %}">
+    {% csrf_token %}
+    <button type="submit">Join This Event</button>
+</form>

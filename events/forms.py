@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Event,Participant
+from .models import Category
 
 class styleMixin:
     """ Mixing to apply style to form field"""
@@ -63,3 +64,14 @@ class CreateParticipant(styleMixin,forms.ModelForm):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.add_style()
+        
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['c_name', 'description']
+        widgets = {
+            'c_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter category name'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter description'}),
+        }
