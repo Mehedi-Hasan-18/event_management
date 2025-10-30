@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'eventmanagement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -102,13 +102,13 @@ WSGI_APPLICATION = 'eventmanagement.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://event_management_db_9b8c_user:ugkSOu0trBg72dlMqeMEOL48RPa1CDvl@dpg-d23icv3e5dus73alqr1g-a.oregon-postgres.render.com/event_management_db_9b8c',
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://event_management_db_9b8c_user:ugkSOu0trBg72dlMqeMEOL48RPa1CDvl@dpg-d23icv3e5dus73alqr1g-a.oregon-postgres.render.com/event_management_db_9b8c',
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
 
 
 # Password validation
