@@ -13,8 +13,10 @@ from .forms import CategoryForm
 from .models import Event, Participant, EventParticipant
 
 # Create your views here.
-# def home (request):
-#     return render(request,'dashboard.html')
+def home(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+    return redirect('signIn')
 
 
 def is_admin(user):
